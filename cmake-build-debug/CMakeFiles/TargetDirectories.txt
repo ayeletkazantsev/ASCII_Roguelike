@@ -1,0 +1,3 @@
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/cmake-build-debug/CMakeFiles/ASCII_Rouguelike.dir
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/cmake-build-debug/CMakeFiles/rebuild_cache.dir
