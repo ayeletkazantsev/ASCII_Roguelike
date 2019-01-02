@@ -3,4 +3,4 @@ project(ASCII_Rouguelike)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(ASCII_Rouguelike main.cpp GameSystem.cpp Player.cpp Level.cpp)
+add_executable(ASCII_Rouguelike main.cpp GameSystem.cpp Player.cpp Level.cpp Enemy.cpp)

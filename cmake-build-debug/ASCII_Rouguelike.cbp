@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Enemy.cpp">
+			<Option target="ASCII_Rouguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Enemy.h">
+			<Option target="ASCII_Rouguelike"/>
+		</Unit>
 		<Unit filename="C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/GameSystem.cpp">
 			<Option target="ASCII_Rouguelike"/>
 		</Unit>

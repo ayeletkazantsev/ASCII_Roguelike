@@ -6,9 +6,9 @@
 #include <cstdio>
 #include "Level.h"
 
-Level::Level() {}
+Level::Level() = default;
 
-void Level::load(string fileName, Player &player, vector <Enemy>& enemies)
+void Level::load(string fileName, Player &player)
 {
     //load the level
     ifstream file;
@@ -42,19 +42,24 @@ void Level::load(string fileName, Player &player, vector <Enemy>& enemies)
                     player.setPosition(j,i);
                     break;
                 case 'S':  //snake
-                     enemies.push_back(Enemy("Snake",tile,1,3,1,10,10));
+                     _enemies.push_back(Enemy("Snake", tile, 1, 3, 1, 10, 10));
+                    _enemies.back().setPosition(j,i);
                              break;
                 case 'g': //goblin
-                    enemies.push_back(Enemy("Goblin",tile,2,10,5,35,50));
+                    _enemies.push_back(Enemy("Goblin", tile, 1, 1, 1, 5, 50));
+                    _enemies.back().setPosition(j,i);
                     break;
                 case 'O': //ogre
-                    enemies.push_back(Enemy("Ogre",tile,4,20,20,200,500));
+                    _enemies.push_back(Enemy("Ogre", tile, 4, 20, 20, 200, 500));
+                    _enemies.back().setPosition(j,i);
                     break;
                 case 'D': //dragon
-                    enemies.push_back(Enemy("Dragon",tile,100,2000,2000,2000,5000000));
+                    _enemies.push_back(Enemy("Dragon", tile, 100, 2000, 2000, 2000, 5000000));
+                    _enemies.back().setPosition(j,i);
                     break;
                 case 'B': //bandit
-                    enemies.push_back(Enemy("Bandit",tile,3,15,10,100,250));
+                    _enemies.push_back(Enemy("Bandit", tile, 3, 15, 10, 100, 250));
+                    _enemies.back().setPosition(j,i);
                     break;
             }
         }
@@ -62,12 +67,14 @@ void Level::load(string fileName, Player &player, vector <Enemy>& enemies)
 }
 
 void Level::print() {
-    cout << string(100,'\n');
+    //cout << string(100,'\n');
+    system("CLS");
     for (int i=0; i<_levelData.size(); ++i)
     {
         printf("%s\n",_levelData[i].c_str());
     }
     printf("\n");
+
 }
 
 void Level::movePlayer(char input, Player& player)
@@ -96,6 +103,37 @@ void Level::movePlayer(char input, Player& player)
     }
 }
 
+void Level::updateMonsters(Player& player)
+{
+    char aiMove;
+    int playerX, playerY;
+    player.getPosition(playerX,playerY);
+    for (int i=0; i<_enemies.size(); ++i)
+    {
+        Enemy& enemy = _enemies[i];
+        int enemyX, enemyY;
+        enemy.getPosition(enemyX,enemyY);
+        aiMove = enemy.getMove(playerX,playerY);
+        switch (aiMove)
+        {
+            case 'w': //up
+                processEnemyMove(player,enemy,enemyX,enemyY - 1);
+                break;
+            case 's': //down
+                processEnemyMove(player,enemy,enemyX,enemyY + 1);
+                break;
+            case 'a': //left
+                processEnemyMove(player,enemy,enemyX - 1,enemyY);
+                break;
+            case 'd': //right
+                processEnemyMove(player,enemy,enemyX + 1,enemyY);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 char Level::getTile(int x, int y)
 {
     return _levelData[y][x];
@@ -117,5 +155,81 @@ void Level::processPlayerMove(Player& player, int targetX, int targetY)
             setTile(playerX,playerY,'.');
             setTile(targetX,targetY, '@');
             break;
+        case '#':
+            break;
+        default:
+            battleMonster(player, targetX, targetY);
+            break;
+    }
+}
+
+void Level::processEnemyMove(Player& player, Enemy& enemy, int targetX, int targetY)
+{
+    char moveTile = getTile(targetX,targetY);
+    int enemyX, enemyY;
+    enemy.getPosition(enemyX,enemyY);
+    switch (moveTile) {
+        case '.':
+            enemy.setPosition(targetX,targetY);
+            setTile(enemyX,enemyY,'.');
+            setTile(targetX,targetY, enemy.getTile());
+            break;
+        case '@':
+            battleMonster(player, enemyX, enemyY);
+            break;
+        case '#':
+            break;
+    }
+}
+
+void Level::battleMonster(Player& player, int targetX, int targetY)
+{
+    int enemyX, enemyY;
+    int playerX,playerY;
+    int attackRoll, attackResult;
+    string enemyName;
+
+    player.getPosition(playerX,playerY);
+
+    for (int i=0; i<_enemies.size(); ++i)
+    {
+        _enemies[i].getPosition(enemyX,enemyY);
+        enemyName = _enemies[i].getName();
+        if (targetX == enemyX && targetY == enemyY)
+        {
+            //battle!
+            //player turn
+            attackRoll = player.attack();
+            printf("Player attacked %s with a roll of %d\n", enemyName.c_str(),attackRoll);
+            system("PAUSE");
+            attackResult = _enemies[i].takeDamage(attackRoll);
+            if (attackResult != 0)
+            {
+                setTile(playerX,playerY,'.');
+                setTile(targetX,targetY,'@');
+                player.setPosition(targetX,targetY);
+                print();
+                printf("Monster died!\n");
+                _enemies.erase(_enemies.begin() + i);
+                i--;
+                //system("PAUSE");
+                player.addExperience(attackResult);
+                return;
+            }
+            //monster turn
+            attackRoll = _enemies[i].attack();
+            printf ("%s attacked you with a roll of %d\n",enemyName.c_str(),attackRoll);
+            attackResult = player.takeDamage(attackRoll);
+            if (attackResult != 0)
+            {
+                setTile(playerX,playerY,'x');
+                print();
+                printf("You died!\n");
+                system("PAUSE");
+                exit(0);
+            }
+            //system("PAUSE");
+            return;
+        }
     }
 }

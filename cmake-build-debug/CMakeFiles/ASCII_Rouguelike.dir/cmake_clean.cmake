@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ASCII_Rouguelike.dir/GameSystem.cpp.obj"
   "CMakeFiles/ASCII_Rouguelike.dir/Player.cpp.obj"
   "CMakeFiles/ASCII_Rouguelike.dir/Level.cpp.obj"
+  "CMakeFiles/ASCII_Rouguelike.dir/Enemy.cpp.obj"
   "ASCII_Rouguelike.pdb"
   "ASCII_Rouguelike.exe"
   "ASCII_Rouguelike.exe.manifest"

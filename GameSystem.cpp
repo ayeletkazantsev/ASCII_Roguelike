@@ -10,7 +10,7 @@ using namespace std;
 //constructor sets up the game
 GameSystem::GameSystem(string levelFileName) {
     _player.init(1,100,10,10,0);
-    _level.load(levelFileName,_player,_enemies);
+    _level.load(levelFileName,_player);
 
     //system("PAUSE");
 }
@@ -23,6 +23,7 @@ void GameSystem::playGame()
     {
         _level.print();
         playerMove();
+        _level.updateMonsters(_player);
     }
 }
 

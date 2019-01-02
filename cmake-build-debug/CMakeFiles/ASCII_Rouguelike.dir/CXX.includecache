@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Enemy.cpp
+ctime
+-
+random
+-
+Enemy.h
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Enemy.h
+
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Enemy.h
+string
+-
+
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/GameSystem.cpp
 string
 -
@@ -17,6 +29,8 @@ GameSystem.h
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/GameSystem.h
 
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/GameSystem.h
+string
+-
 Player.h
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Player.h
 Level.h
@@ -39,8 +53,14 @@ string
 -
 Player.h
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Player.h
+Enemy.h
+C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Enemy.h
 
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Player.cpp
+random
+-
+ctime
+-
 Player.h
 C:/Users/Ayelet/CLionProjects/ASCII_Rouguelike/Player.h
 

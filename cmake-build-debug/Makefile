@@ -122,6 +122,33 @@ ASCII_Rouguelike/fast:
 	$(MAKE) -f CMakeFiles\ASCII_Rouguelike.dir\build.make CMakeFiles/ASCII_Rouguelike.dir/build
 .PHONY : ASCII_Rouguelike/fast
 
+Enemy.obj: Enemy.cpp.obj
+
+.PHONY : Enemy.obj
+
+# target to build an object file
+Enemy.cpp.obj:
+	$(MAKE) -f CMakeFiles\ASCII_Rouguelike.dir\build.make CMakeFiles/ASCII_Rouguelike.dir/Enemy.cpp.obj
+.PHONY : Enemy.cpp.obj
+
+Enemy.i: Enemy.cpp.i
+
+.PHONY : Enemy.i
+
+# target to preprocess a source file
+Enemy.cpp.i:
+	$(MAKE) -f CMakeFiles\ASCII_Rouguelike.dir\build.make CMakeFiles/ASCII_Rouguelike.dir/Enemy.cpp.i
+.PHONY : Enemy.cpp.i
+
+Enemy.s: Enemy.cpp.s
+
+.PHONY : Enemy.s
+
+# target to generate assembly for a file
+Enemy.cpp.s:
+	$(MAKE) -f CMakeFiles\ASCII_Rouguelike.dir\build.make CMakeFiles/ASCII_Rouguelike.dir/Enemy.cpp.s
+.PHONY : Enemy.cpp.s
+
 GameSystem.obj: GameSystem.cpp.obj
 
 .PHONY : GameSystem.obj
@@ -239,6 +266,9 @@ help:
 	@echo ... ASCII_Rouguelike
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Enemy.obj
+	@echo ... Enemy.i
+	@echo ... Enemy.s
 	@echo ... GameSystem.obj
 	@echo ... GameSystem.i
 	@echo ... GameSystem.s

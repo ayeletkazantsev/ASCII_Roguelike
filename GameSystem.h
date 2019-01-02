@@ -8,7 +8,6 @@
 #include <string>
 #include "Player.h"
 #include "Level.h"
-#include "Enemy.h"
 
 class GameSystem {
 public:
@@ -18,7 +17,6 @@ public:
 private:
     Level _level;
     Player _player;
-    vector <Enemy> _enemies;
 };
 
 
